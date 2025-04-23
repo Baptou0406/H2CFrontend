@@ -1,0 +1,70 @@
+<div class="consommables-container">
+    <h2 class="title">Liste des Réservations</h2>
+  
+    <table class="consommables-table">
+        <thead>
+            <tr>
+              <th>Nom du Voyageur</th>
+              <th>Date de Début</th>
+              <th>Date de Fin</th>
+              <th>Prix (€)</th>
+              <th>Logement</th>
+              <th>Plateforme</th> <!-- ✅ AJOUT -->
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr *ngFor="let reservation of reservations" (click)="editReservation(reservation)" class="clickable-row">
+              <td>{{ reservation.Nom_voyageur }}</td>
+              <td>{{ reservation.date_debut }}</td>
+              <td>{{ reservation.date_fin }}</td>
+              <td>{{ reservation.prix }}</td>
+              <td>{{ reservation.logement }}</td>
+              <td>{{ reservation.Plateforme }}</td> <!-- ✅ AJOUT -->
+            </tr>
+          </tbody>
+    </table>
+  
+    <br>
+    <button class="btn-ajouter" (click)="openModal()">Ajouter une réservation</button>
+  
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>{{ editMode ? 'Modifier' : 'Ajouter' }} une Réservation</h2>
+  
+        <form (submit)="editMode ? updateReservation() : addReservation(); $event.preventDefault()">
+          <label>Nom du voyageur :</label>
+          <input type="text" [(ngModel)]="selectedReservation.Nom_voyageur" name="nom" required>
+  
+          <label>Date de début :</label>
+          <input type="date" [(ngModel)]="selectedReservation.date_debut" name="date_debut" required>
+  
+          <label>Date de fin :</label>
+          <input type="date" [(ngModel)]="selectedReservation.date_fin" name="date_fin" required>
+  
+          <label>Prix (€) :</label>
+          <input type="number" [(ngModel)]="selectedReservation.prix" name="prix" required>
+  
+          <label>Logement :</label>
+          <select [(ngModel)]="selectedReservation.logement" name="logement" required>
+            <option *ngFor="let logement of logements" [value]="logement.id">
+              {{ logement.Nom }}
+            </option>
+          </select>
+          <label>Plateforme :</label>
+<select [(ngModel)]="selectedReservation.plateforme" name="plateforme" required>
+  <option value="Airbnb">Airbnb</option>
+  <option value="Booking">Booking</option>
+  <option value="H2C">H2C</option>
+</select>
+
+  
+          <button type="submit" class="btn-valider">{{ editMode ? 'Modifier' : 'Valider' }}</button>
+          <button *ngIf="editMode" type="button" class="btn-valider" (click)="deleteReservation()">Supprimer</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  

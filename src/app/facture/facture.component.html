@@ -1,0 +1,153 @@
+<div class="consommables-container">
+  <h2 class="title">Facturation par logement</h2>
+  
+  <!-- Sélection du logement, mois et année -->
+  <div class="filters">
+    <!-- Select Logement -->
+    <select [(ngModel)]="selectedLogementId">
+      <option *ngFor="let logement of logements" [ngValue]="logement.id">
+        {{ logement.Nom }}
+      </option>
+    </select>
+    
+    <!-- Select Mois -->
+    <select [(ngModel)]="selectedMonth">
+      <option [ngValue]="0">Tous les mois</option>
+      <option [ngValue]="1">Janvier</option>
+      <option [ngValue]="2">Février</option>
+      <option [ngValue]="3">Mars</option>
+      <option [ngValue]="4">Avril</option>
+      <option [ngValue]="5">Mai</option>
+      <option [ngValue]="6">Juin</option>
+      <option [ngValue]="7">Juillet</option>
+      <option [ngValue]="8">Août</option>
+      <option [ngValue]="9">Septembre</option>
+      <option [ngValue]="10">Octobre</option>
+      <option [ngValue]="11">Novembre</option>
+      <option [ngValue]="12">Décembre</option>
+    </select>
+    
+    <!-- Select Année -->
+    <select [(ngModel)]="selectedYear">
+      <option *ngFor="let year of availableYears" [ngValue]="year">
+        {{ year }}
+      </option>
+    </select>
+  </div>
+  
+  <div *ngIf="selectedLogementId">
+  
+    <!-- RÉSERVATIONS -->
+    <h3 class="title">Réservations</h3>
+    <table class="consommables-table">
+      <thead>
+        <tr>
+          <th>Nom du Voyageur</th>
+          <th>Date de Début</th>
+          <th>Date de Fin</th>
+          <th>Nombres nuits</th>
+          <th>Prix (€)</th>
+          <th>Prix H2C</th>
+          <th>H2C hors taxes (€)</th>
+          <th>Ménages (€)</th>
+          <th>Ménages hors taxes (€)</th>
+          <th>Logement</th>
+          <th>Plateforme</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of getFiltered(reservations)">
+          <td>{{ r.Nom_voyageur }}</td>
+          <td>{{ r.date_debut }}</td>
+          <td>{{ r.date_fin }}</td>
+          <td>{{ calculateNights(r) }}</td>
+          <td>{{ r.prix }}</td>
+          <td>{{ calculateH2cPrice(r) }}</td>
+          <td>{{ calculateHorsTaxe(r) }}</td>
+          <td>{{ calculateMenage(r) }}</td>
+          <td>{{ calculateMenageHorsTaxe(r) }}</td>
+          <td>{{ r.logement }}</td>
+          <td>{{ r.Plateforme }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- CONSOMMABLES -->
+    <h3 class="title">Consommables</h3>
+    <table class="consommables-table">
+      <thead>
+        <tr>
+          <th>Nom Magasin</th>
+          <th>Prix (€)</th>
+          <th>Prix HT (€)</th>
+          <th>Logement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of getFiltered(consommables)">
+          <td>{{ c['Nom magasin'] }}</td>
+          <td>{{ c.prix }}</td>
+          <td>{{ calculateConsommableHorsTaxe(c) }}</td>
+          <td>{{ c.logement }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- INTERVENTIONS -->
+    <h3 class="title">Interventions</h3>
+    <table class="consommables-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>Prix (€)</th>
+          <th>Prix HT (€)</th>
+          <th>Logement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of getFiltered(interventions)">
+          <td>{{ i.id }}</td>
+          <td>{{ i.Description }}</td>
+          <td>{{ i.prix }}</td>
+          <td>{{ calculateInterventionHorsTaxe(i) }}</td>
+          <td>{{ i.logement }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- TOTAUX PAR PLATEFORME -->
+    <h3 class="title">Totaux par Plateforme</h3>
+    <table class="consommables-table">
+      <thead>
+        <tr>
+          <th>Plateforme</th>
+          <th>Nombre de nuits</th>
+          <th>Prix total (€)</th>
+          <th>Prix H2C (€)</th>
+          <th>H2C hors taxe (€)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plateforme of getPlatformNames()">
+          <td>{{ plateforme }}</td>
+          <td>{{ getPlatformTotals()[plateforme].nuits }}</td>
+          <td>{{ getPlatformTotals()[plateforme].prix | number: '1.2-2' }}</td>
+          <td>{{ getPlatformTotals()[plateforme].h2c | number: '1.2-2' }}</td>
+          <td>{{ getPlatformTotals()[plateforme].h2cHT | number: '1.2-2' }}</td>
+        </tr>
+        <tr class="total">
+          <td><strong>Total général</strong></td>
+          <td>{{ getTotalGlobal(getPlatformTotals()).nuits }}</td>
+          <td>{{ getTotalGlobal(getPlatformTotals()).prix | number: '1.2-2' }}</td>
+          <td>{{ getTotalGlobal(getPlatformTotals()).h2c | number: '1.2-2' }}</td>
+          <td>{{ getTotalGlobal(getPlatformTotals()).h2cHT | number: '1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- BOUTON CSV -->
+    <button class="btn-ajouter" (click)="exportAllTablesToCSV()">📤 Exporter tous les tableaux</button>
+  
+  </div>
+</div>

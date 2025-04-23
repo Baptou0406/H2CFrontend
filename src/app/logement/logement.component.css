@@ -1,0 +1,205 @@
+/* Conteneur principal */
+.consommables-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #333;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Titre */
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #d4af37; /* Doré comme H2C */
+    margin-bottom: 20px;
+  }
+  
+  /* Tableau */
+  .consommables-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #444;
+    margin-top: 10px;
+  }
+  
+  .consommables-table th, .consommables-table td {
+    padding: 12px;
+    border-bottom: 1px solid #666;
+    color: white;
+  }
+  
+  .consommables-table th {
+    background: #222;
+    color: #d4af37;
+  }
+  
+  /* Effet hover */
+  .consommables-table tr:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+  /* 🟡 Style du bouton Ajouter */
+.btn-ajouter {
+  background-color: #ffcc00; /* Couleur dorée */
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-ajouter:hover {
+  background-color: #e6b800;
+}
+
+/* 🖥️ Style de la popup */
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #2d2d2d; /* Fond sombre */
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* 🎨 Titre */
+.modal-content h2 {
+  color: #ffcc00;
+  margin-bottom: 20px;
+}
+
+/* 🔖 Style des labels */
+.modal-content label {
+  display: block;
+  margin: 10px 0 5px;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* 📝 Style des inputs */
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* ✅ Bouton de validation */
+.btn-valider {
+  background-color: #ffcc00;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.btn-valider:hover {
+  background-color: #e6b800;
+}
+
+/* ❌ Bouton de fermeture */
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.close:hover {
+  color: #ffcc00;
+}
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  color: #ffcc00;
+}
+
+.modal-content label {
+  display: block;
+  color: white;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn-ajouter, .btn-valider {
+  background-color: #ffcc00;
+  color: black;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn-valider:hover, .btn-ajouter:hover {
+  background-color: #e6b800;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}

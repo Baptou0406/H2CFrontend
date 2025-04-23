@@ -1,0 +1,85 @@
+/* 🧾 Conteneur principal */
+.consommables-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #333;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* 🎯 Titre principal */
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: #d4af37;
+    margin-bottom: 20px;
+  }
+  
+  /* 📌 Sous-titres (Réservations, etc.) */
+  .title-section {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d4af37;
+    margin: 30px 0 10px;
+    text-align: left;
+  }
+  
+  /* 📋 Tableau générique */
+  .consommables-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #444;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .consommables-table th,
+  .consommables-table td {
+    padding: 12px;
+    border-bottom: 1px solid #666;
+    color: white;
+    text-align: center;
+  }
+  
+  .consommables-table th {
+    background: #222;
+    color: #d4af37;
+  }
+  
+  /* ✨ Hover effet */
+  .consommables-table tr:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+  
+  /* 🟡 Bouton export */
+  .btn-ajouter {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-top: 20px;
+  }
+  
+  .btn-ajouter:hover {
+    background-color: #e6b800;
+  }
+  
+  /* 🔽 Sélecteur logement */
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ccc;
+  }
+  

@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h2 class="title">Connexion</h2>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Utilisateur</mat-label>
+      <input matInput [(ngModel)]="credentials.username" name="username" type="text" required>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput [(ngModel)]="credentials.password" name="password" type="password" required>
+    </mat-form-field>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    
+    <button mat-raised-button color="primary" class="login-button" type="submit" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Se connecter</span>
+      <span *ngIf="isLoading">Connexion en cours...</span>
+    </button>
+  </form>
+</div>

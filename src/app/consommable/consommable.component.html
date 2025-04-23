@@ -1,0 +1,49 @@
+<div class="consommables-container">
+  <h2 class="title">Liste des Consommables</h2>
+  <table class="consommables-table">
+  <thead>
+  <tr>
+  <th>Nom Magasin</th>
+  <th>Prix (€)</th>
+  <th>Logement</th>
+  <th>Date</th> <!-- Nouvelle colonne pour la date -->
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let consommable of consommables" (click)="editConsommable(consommable)" class="clickable-row">
+  <td>{{ consommable['Nom magasin'] }}</td>
+  <td>{{ consommable.prix }}</td>
+  <td>{{ consommable.logement}}</td>
+  <td>{{ formatDate(consommable.date) }}</td> <!-- Affichage de la date formatée -->
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <button (click)="openModal()" class="btn-ajouter">Ajouter un Consommable</button>
+ <!-- Popup Ajout / Modification -->
+  <div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <h2>{{ editMode ? 'Modifier' : 'Ajouter' }} un Consommable</h2>
+  <form (submit)="editMode ? updateConsommable() : addConsommable(); $event.preventDefault()">
+  <label>Nom du Magasin:</label>
+  <input type="text" [(ngModel)]="selectedConsommable['Nom magasin']" name="nomMagasin" required>
+  <label>Prix (€):</label>
+  <input type="number" [(ngModel)]="selectedConsommable.prix" name="prix" required>
+  <label>Logement :</label>
+  <select [(ngModel)]="selectedConsommable.logement" name="logement" required>
+  <option *ngFor="let logement of logements" [value]="logement.id">
+  {{ logement.Nom }}
+  </option>
+  </select>
+  <label>Date :</label>
+  <input type="date" [(ngModel)]="selectedConsommable.date" name="date" required>
+  <button type="submit" class="btn-valider">
+  {{ editMode ? 'Modifier' : 'Valider' }}
+  </button>
+  <br>
+  <button *ngIf="editMode" type="button" class="btn-valider" (click)="deleteConsommable()">Supprimer</button>
+  </form>
+  </div>
+  </div>
+ </div>

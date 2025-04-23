@@ -16,9 +16,10 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
+    "target": "ES2022",  // ✅ Corrigé pour respecter Angular CLI
+    "module": "ESNext",
+    "useDefineForClassFields": false,  // ✅ Ajouté pour éviter le warning
+    "downlevelIteration": true,  // ✅ Ajouté pour compatibilité avec ES2022
     "lib": [
       "ES2022",
       "dom"

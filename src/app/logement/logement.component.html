@@ -1,0 +1,50 @@
+<div class="consommables-container">
+  <h2 class="title">Liste des Logements</h2>
+
+  <table class="consommables-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Commission</th>
+        <th>Ménage</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let logement of logements" (click)="editLogement(logement)" class="clickable-row">
+        <td>{{ logement.id }}</td>
+        <td>{{ logement.Nom }}</td>
+        <td>{{ logement.Commission }}</td>
+        <td>{{ logement.Menage }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <button class="btn-ajouter" (click)="openModal()">Ajouter un Logement</button>
+
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>{{ editMode ? 'Modifier' : 'Ajouter' }} un Logement</h2>
+
+      <form (submit)="editMode ? updateLogement() : addLogement(); $event.preventDefault()">
+        <label>Nom du logement :</label>
+        <input type="text" [(ngModel)]="selectedLogement.nom" name="nom" required>
+      
+        <label>Commission :</label>
+        <input type="number" [(ngModel)]="selectedLogement.commission" name="commission" required>
+      
+        <label>Frais de ménage :</label>
+        <input type="number" [(ngModel)]="selectedLogement.menage" name="menage" required>
+      
+        <button type="submit" class="btn-valider">
+          {{ editMode ? 'Modifier' : 'Valider' }}
+        </button>
+      
+        <button *ngIf="editMode" type="button" class="btn-valider" (click)="deleteLogement()">Supprimer</button>
+      </form>
+      
+    </div>
+  </div>
+</div>

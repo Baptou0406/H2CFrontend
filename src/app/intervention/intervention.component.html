@@ -1,0 +1,47 @@
+<div class="consommables-container">
+  <h2 class="title">Liste des Interventions</h2>
+  <table class="consommables-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Prix (€)</th>
+        <th>Logement</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let intervention of interventions" (click)="editIntervention(intervention)" class="clickable-row">
+        <td>{{ intervention.id }}</td>
+        <td>{{ intervention.Description }}</td>
+        <td>{{ intervention.prix }}</td>
+        <td>{{ intervention.logement }}</td>
+        <td>{{ formatDate(intervention.date) }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn-ajouter" (click)="openModal()">Ajouter une intervention</button>
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>{{ editMode ? 'Modifier' : 'Ajouter' }} une Intervention</h2>
+      <form (submit)="editMode ? updateIntervention() : addIntervention(); $event.preventDefault()">
+        <label>Description :</label>
+        <input type="text" [(ngModel)]="selectedIntervention.Description" name="description" required>
+        <label>Prix (€) :</label>
+        <input type="number" [(ngModel)]="selectedIntervention.prix" name="prix" required>
+        <label>Logement :</label>
+        <select [(ngModel)]="selectedIntervention.logement" name="logement" required>
+          <option *ngFor="let logement of logements" [value]="logement.id">{{ logement.Nom }}</option>
+        </select>
+        <label>Date :</label>
+        <input type="date" [(ngModel)]="selectedIntervention.date" name="date" required>
+        <button type="submit" class="btn-valider">
+          {{ editMode ? 'Modifier' : 'Valider' }}
+        </button>
+        <br />
+        <button *ngIf="editMode" type="button" class="btn-valider" (click)="deleteIntervention()">Supprimer</button>
+      </form>
+    </div>
+  </div>
+</div>

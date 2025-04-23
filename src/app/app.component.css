@@ -1,0 +1,48 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .sidenav-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  mat-drawer {
+    width: 250px;
+  }
+  
+  mat-drawer-content {
+    flex: 1;
+    padding: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 16px;
+  }
+  .mat-toolbar {
+    background-color: #333; /* Remplace le bleu par une couleur foncée */
+    color: #d4af37; /* Or / doré comme sur le site */
+    font-family: 'Poppins', sans-serif; /* Ou la police utilisée sur le site */
+    font-weight: bold;
+    font-size: 24px;
+  }
+  mat-list-item {
+    color: white; /* Texte blanc par défaut */
+    font-weight: bold;
+    transition: color 0.3s ease, background 0.3s ease;
+  }
+  
+  /* Effet au survol */
+  mat-list-item:hover {
+    background : #d4af37 !important; /* Texte doré au hover */
+    color : rgba(212, 175, 55, 0.1); /* Fond léger doré */
+    border-radius: 5px; /* Effet arrondi pour un design propre */
+  }
+  
